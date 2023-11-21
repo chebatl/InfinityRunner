@@ -12,7 +12,9 @@ public class PlatformSpawner : MonoBehaviour
     private int platformIndex;
 
     [SerializeField]
-    private float offset;
+    private float offsetX;
+    [SerializeField]
+    private float offsetY;
     void Start()
     {
 
@@ -20,9 +22,9 @@ public class PlatformSpawner : MonoBehaviour
 
         foreach (GameObject platform in platformsList)
         {
-            Transform aux = Instantiate(platform, new Vector2(offset, -4), transform.rotation).transform;
+            Transform aux = Instantiate(platform, new Vector2(offsetX, offsetY), transform.rotation).transform;
             currentPlatformsList.Add(aux);
-            offset += 30;
+            offsetX += 30;
         }
     }
 
@@ -34,7 +36,7 @@ public class PlatformSpawner : MonoBehaviour
 
     private void Move(){
         float distance = player.position.x - getCurrentPlatformX();
-        if(distance >= 1 ){
+        if(distance >= 5 ){
             Pooling(currentPlatformsList[platformIndex++].gameObject);
             if(platformIndex > currentPlatformsList.Count -1){
                 platformIndex = 0;
@@ -48,7 +50,7 @@ public class PlatformSpawner : MonoBehaviour
     }
 
     public void Pooling(GameObject platform){
-        platform.transform.position = new Vector2(offset, -4);
-        offset+=30;
+        platform.transform.position = new Vector2(offsetX, offsetY);
+        offsetX+=30;
     }
 }

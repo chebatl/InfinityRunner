@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: 5427551146839856381}
   m_Layer: 0
   m_Name: Platform C
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -90,9 +90,9 @@ GameObject:
   - component: {fileID: 5494367798752595873}
   - component: {fileID: 4948512085597907171}
   - component: {fileID: 7970360231123525555}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -220,9 +220,9 @@ GameObject:
   - component: {fileID: 7622369673473091711}
   - component: {fileID: 2857642661260031294}
   - component: {fileID: 4572417317707610594}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Sprite (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
