@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FlyEnemy : MonoBehaviour
+public class FlyEnemy : Enemy
 {
 
     private Rigidbody2D _rigbody;
-    [SerializeField] private float speed;
 
     // Start is called before the first frame update
     void Start()

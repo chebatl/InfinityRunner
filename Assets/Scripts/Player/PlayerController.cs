@@ -6,11 +6,11 @@ public class PlayerController : MonoBehaviour
 {
     private Rigidbody2D _rigidbody;
     private Animator _animator;
-    [SerializeField]
-    private float playerSpeed;
-    [SerializeField]
-    private float jumpForce;
-    private bool onGround = true;
+    [SerializeField] private float playerSpeed;
+    [SerializeField] private float jumpForce;
+    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private Transform firePoint;
+    [SerializeField] private bool onGround = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
             _rigidbody.AddForce(new Vector2(_rigidbody.velocity.x, jumpForce), ForceMode2D.Impulse);
             _animator.SetBool("onGround", onGround);
         }
+        if(Input.GetKeyDown(KeyCode.Mouse0)){
+            Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
+        }
     }
 
     private void FixedUpdate() {
@@ -31,8 +34,10 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        onGround = other.gameObject.layer == 3;
-        // onGround = other.gameObject.ComparTag("Ground");
-        _animator.SetBool("onGround", onGround);
+        //other.ComparTag("Ground");
+        if(other.gameObject.layer == 3){
+            onGround = !onGround;
+            _animator.SetBool("onGround", onGround);
+        }
     }
 }
