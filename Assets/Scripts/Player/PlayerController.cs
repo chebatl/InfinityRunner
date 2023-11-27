@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
     }
 
     private void OnCollisionEnter2D(Collision2D other) {
-        //other.gameObject.ComparTag("Ground");
+        //other.ComparTag("Ground");
         if(other.gameObject.layer == 3){
             onGround = !onGround;
             _animator.SetBool("onGround", onGround);

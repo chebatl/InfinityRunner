@@ -30,13 +30,11 @@ public class PlatformSpawner : MonoBehaviour
 
     private void Update() {
         Move();
-        Debug.Log("Move chamado");
     }
 
     private void Move(){
         float distance = player.position.x - getCurrentPlatformX();
         if(distance >= 5 ){
-            Debug.Log(distance);
             Pooling(currentPlatformsList[platformIndex++].gameObject);
             if(platformIndex > currentPlatformsList.Count -1){
                 platformIndex = 0;

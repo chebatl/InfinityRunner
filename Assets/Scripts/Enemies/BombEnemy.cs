@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BombEnemy : MonoBehaviour
+public class BombEnemy : Enemy
 {
     [SerializeField] private GameObject bombPrefab;
     [SerializeField] private Transform firePoint;
