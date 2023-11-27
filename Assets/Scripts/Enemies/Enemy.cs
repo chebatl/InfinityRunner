@@ -5,7 +5,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     [SerializeField] private int health;
-    [SerializeField] private int damage;
+    [SerializeField] protected int damage;
     public float speed;
 
 
@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
     protected virtual void OnTriggerEnter2D(Collider2D other) {
         if(other.CompareTag("Projectile")){
             TakeDamage(other.GetComponent<Bullet>().damage);
-            Destroy(other.gameObject);
+            other.GetComponent<Bullet>().OnHit();
         }
     }
 }
