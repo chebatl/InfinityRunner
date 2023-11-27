@@ -5,20 +5,18 @@ using UnityEngine;
 public class PlatformSpawner : MonoBehaviour
 {
     public List<GameObject> platformsList = new List<GameObject>(); //prefabs
-    private List<Transform> currentPlatformsList = new List<Transform>(); //objetos na cena
+    private List<Transform> currentPlatformsList; //objetos na cena
     private Transform player;
-
     private Transform currentPlatform;
-    private int platformIndex;
+    private int platformIndex = 0;
 
-    [SerializeField]
-    private float offsetX;
-    [SerializeField]
-    private float offsetY;
+    [SerializeField] private float offsetX;
+    [SerializeField] private float offsetY;
     void Start()
     {
 
         player = GameObject.FindGameObjectWithTag("Player").transform;
+        currentPlatformsList = new List<Transform>();
 
         foreach (GameObject platform in platformsList)
         {
@@ -32,11 +30,13 @@ public class PlatformSpawner : MonoBehaviour
 
     private void Update() {
         Move();
+        Debug.Log("Move chamado");
     }
 
     private void Move(){
         float distance = player.position.x - getCurrentPlatformX();
         if(distance >= 5 ){
+            Debug.Log(distance);
             Pooling(currentPlatformsList[platformIndex++].gameObject);
             if(platformIndex > currentPlatformsList.Count -1){
                 platformIndex = 0;
@@ -51,6 +51,11 @@ public class PlatformSpawner : MonoBehaviour
 
     public void Pooling(GameObject platform){
         platform.transform.position = new Vector2(offsetX, offsetY);
-        offsetX+=30;
+        offsetX+=30f;
+        Platform actualPlatform = platform.GetComponent<Platform>();
+        if(actualPlatform.spawnEnemy != null){
+            actualPlatform.spawnEnemy.Spawn();
+        }
+
     }
 }
